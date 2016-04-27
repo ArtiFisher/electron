@@ -1,38 +1,69 @@
 var app = document.getElementById("app"),
-	result = document.getElementById("result"),
+	output = document.getElementById("output"),
 	form = document.getElementById("input-form"),
-	name = document.getElementById("name-input"),
-	surname = document.getElementById("surname-input"),
-	imageURL = document.getElementById("imageURL-input"),
-	unit = document.getElementById("unit-input"),
-	title = document.getElementById("title-input"),
-	skype = document.getElementById("skype-input"),
-	mail = document.getElementById("mail-input"),
-	description = document.getElementById("description-input"),
+	nameInput = document.getElementById("name-input"),
+	surnameInput = document.getElementById("surname-input"),
+	imageURLInput = document.getElementById("imageURL-input"),
+	unitInput = document.getElementById("unit-input"),
+	titleInput = document.getElementById("title-input"),
+	skypeInput = document.getElementById("skype-input"),
+	mailInput = document.getElementById("mail-input"),
+	descriptionInput = document.getElementById("description-input"),
 	saveButton = document.getElementById("save"),
+	cancelButton = document.getElementById("cancel"),
 	// userTemplate = document.getElementById("templates").querySelector(".user"),
-	nextButton = document.getElementById("next");
+	nextButton = document.getElementById("next"),
+	resultButton = document.getElementById("result"),
+	fs = require('fs');
 
 nextButton.addEventListener('click', function(){
 	app.classList.add('filling-form');
 });
 
+resultButton.addEventListener('click', buildFile);
+
 saveButton.addEventListener('click', function(){
-	displayUser();
+	displayItem();
 	app.classList.remove('filling-form');
 });
 
-function displayUser(){
+cancelButton.addEventListener('click', function(){
+	app.classList.remove('filling-form');
+});
+
+function displayItem(){
 	var element = document.createElement('div'),
-		HTML = `<span class="name">${name.value}</span>
-        <span class="surname">${surname.value}</span>
-        <span class="imageURL">${imageURL.value}</span>
-        <span class="unit">${unit.value}</span>
-        <span class="title">${title.value}</span>
-        <span class="skype">${skype.value}</span>
-        <span class="mail">${mail.value}</span>
-        <p class="description">${description.value}</p>`;
-    element.classList.add('user');
+		HTML = `<span class="name">${nameInput.value}</span>
+        <span class="surname">${surnameInput.value}</span>
+        <span class="imageURL">${imageURLInput.value}</span>
+        <span class="unit">${unitInput.value}</span>
+        <span class="title">${titleInput.value}</span>
+        <span class="skype">${skypeInput.value}</span>
+        <span class="mail">${mailInput.value}</span>
+        <p class="description">${descriptionInput.value}</p>`;
+    element.classList.add('item');
     element.innerHTML = HTML;
-    result.appendChild(element);
+    output.appendChild(element);
 }
+
+function buildFile(){
+	var fileName = 'output.html';
+	var stream = fs.createWriteStream(fileName);
+
+	stream.once('open', function(fd) {
+	  var html = buildHtml();
+
+	  stream.end(html);
+	});
+}
+
+function buildHtml() {
+  var header = '';
+  var body = '';
+
+  // concatenate header string
+  // concatenate body string
+
+  return '<!DOCTYPE html>'
+       + '<html><header>' + header + '</header><body>' + output.innerHTML + '</body></html>';
+};
