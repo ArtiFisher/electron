@@ -33,6 +33,14 @@ cancelButton.addEventListener('click', function(){
 
 function displayItem(){
 	var element = document.createElement('div'),
+		// HTML = `<span class="name">${nameInput.value}</span>
+  //       <span class="surname">${surnameInput.value}</span>
+  //       <span class="imageURL">${imageURLInput.value}</span>
+  //       <span class="unit">${unitInput.value}</span>
+  //       <span class="title">${titleInput.value}</span>
+  //       <span class="skype">${skypeInput.value}</span>
+  //       <span class="mail">${mailInput.value}</span>
+  //       <p class="description">${descriptionInput.value}</p>`;
 		HTML = `<span class="name">${nameInput.value}</span>
         <span class="surname">${surnameInput.value}</span>
         <span class="imageURL">${imageURLInput.value}</span>
