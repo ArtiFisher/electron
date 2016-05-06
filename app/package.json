@@ -1,0 +1,10 @@
+{
+  "name": "electron-app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "devDependencies": {
+    "asar": "^0.11.0"
+  }
+}
