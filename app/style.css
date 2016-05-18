@@ -6,7 +6,8 @@
 	display: block;
 }
 
-.app.filling-form button.next {
+.app.filling-form button.next,
+.app.filling-form button.result {
 	display: none;
 }
 
