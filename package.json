@@ -2,10 +2,12 @@
   "name": "electron-app",
   "main": "app/main.js",
   "scripts": {
-    "build": "asar pack app dist/resources/app.asar && start dist/electron.exe",
-    "start": "rm -f dist/resources/app.asar && start dist/electron.exe app/main.js"
+    "build": "cp -avr node_modules/electron-prebuilt/dist dist && cp -avr app dist/resources",
+    "build:asar": "cp -avr node_modules/electron-prebuilt/dist dist && asar pack app dist/resources/app.asar",
+    "start": "start node_modules/electron-prebuilt/dist/electron.exe app/main.js"
   },
   "devDependencies": {
-    "asar": "^0.11.0"
+    "asar": "^0.11.0",
+    "electron-prebuilt": "^1.1.0"
   }
 }
